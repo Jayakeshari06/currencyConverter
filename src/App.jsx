@@ -27,7 +27,7 @@ function App() {
     <div
       className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
       style={{
-        backgroundImage: `url('https://images.pexels.com/photos/4227680/pexels-photo-4227680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+        backgroundImage: `url('https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
       }}
     >
       <div className="w-full">
@@ -43,8 +43,11 @@ function App() {
                 label="From"
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setAmount(amount)}
-                selectCurrency={from}
+                onCurrencyChange={(currency) => {
+                  setFrom(currency);
+                  setAmount(0); // Reset amount when currency changes
+                }}
+                selectCurrency={from} // Bind 'from' to select currency
                 onAmountChange={(amount) => setAmount(amount)}
               />
             </div>
@@ -62,8 +65,8 @@ function App() {
                 label="To"
                 amount={convertedAmount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={from}
+                onCurrencyChange={(currency) => setTo(currency)} // Update 'to' currency
+                selectCurrency={to} // Bind 'to' to select currency
                 amountDisable
               />
             </div>
